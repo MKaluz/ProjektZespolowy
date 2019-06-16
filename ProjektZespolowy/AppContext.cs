@@ -7,9 +7,9 @@ using ProjektZespolowy.Models;
 
 namespace ProjektZespolowy
 {
-    public class Context : DbContext
+    public class AppContext : DbContext
     {
-        public Context(DbContextOptions options) 
+        public AppContext(DbContextOptions options) 
             :base(options)
         {
             

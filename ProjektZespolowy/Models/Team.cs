@@ -7,12 +7,12 @@ namespace ProjektZespolowy.Models
 {
     public class Team
     {
-        public int Id { get; set; }
+        public int TeamId { get; set; }
         public string Name { get; set; }
         public int Description { get; set; }
 
-        public List<User> TeamMembers { get; set; } = new List<User>();
-        public User User { get; set; }
+        public ICollection<User> TeamMembers { get; set; } = new List<User>();
+        
 
     }
 }
