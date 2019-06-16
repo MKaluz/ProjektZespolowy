@@ -14,10 +14,12 @@ namespace ProjektZespolowy.Conntrolers
     public class TeamController : Controller
     {
         private ITeamService _teamService;
+        private IUserService _userService;
 
-        public TeamController(ITeamService teamService)
+        public TeamController(ITeamService teamService, IUserService userService)
         {
             _teamService = teamService;
+            _userService = userService;
         }
         [HttpGet]
         public IActionResult GetTeams()
@@ -88,7 +90,20 @@ namespace ProjektZespolowy.Conntrolers
             _teamService.DeleteTeam(id);
 
             return NoContent();
+        }
+        [HttpGet("{teamId}")]
+        public IActionResult ShowTeamMembers(int teamId)
+        {
+            var teamFromRepo = _teamService.GetTeamById(teamId);
+            if (teamFromRepo == null)
+            {
+                return BadRequest();
+            }
 
+            var usersFromRepo = teamFromRepo.TeamMembers.ToList();
+            var results = Mapper.Map<IEnumerable<UserDto>>(usersFromRepo);
+
+            return Ok(results);
         }
     }
 }

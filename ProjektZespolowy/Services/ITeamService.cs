@@ -13,5 +13,11 @@ namespace ProjektZespolowy.Services
         void AddTeam(Team team);
         void UpdateTeam(Team team);
         void DeleteTeam(int id);
+        void AddTeamMember(int cityId, User user);
+        IEnumerable<User> GetTeamMembers(int teamId);
+        User GetTeamMemberById(int teamId, int userId);
+        void DeleteTeamMember(int teamId, int userId);
+
+        void Save();
     }
 }

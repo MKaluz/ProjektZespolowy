@@ -12,8 +12,8 @@ namespace ProjektZespolowy.Dtos
         public string Name { get; set; }
         [Required]
         public string Surname { get; set; }
-        [Required]
-        public int TeamId { get; set; }
+        //[Required]
+        //public int TeamId { get; set; }
 
     }
 }
