@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjektZespolowy.Models
+namespace ProjektZespolowy.Dtos
 {
-    public class Team
+    public class TeamForUpdateDto
     {
-        public int TeamId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
-        public ICollection<User> TeamMembers { get; set; } = new List<User>();
-        
-
     }
 }

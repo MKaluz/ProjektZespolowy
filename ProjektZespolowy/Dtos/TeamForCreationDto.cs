@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjektZespolowy.Models
+namespace ProjektZespolowy.Dtos
 {
-    public class Team
+    public class TeamForCreationDto
     {
-        public int TeamId { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-
-        public ICollection<User> TeamMembers { get; set; } = new List<User>();
-        
-
     }
 }

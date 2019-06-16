@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using ProjektZespolowy.Extensions;
+using ProjektZespolowy.Mappings;
+using ProjektZespolowy.Services;
 
 namespace ProjektZespolowy
 {
@@ -28,9 +30,13 @@ namespace ProjektZespolowy
         public void ConfigureServices(IServiceCollection services)
 
         {
-             services.AddMvc();
-             services.AddAutoMapper();
-             services.AddSwag();
+            services.AddMvc();
+            Mapper.Initialize(cfg => cfg.AddProfile<MappingProfile>());
+            services.AddAutoMapper();
+            services.AddSwag();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITeamService, TeamService>();
 
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -44,11 +50,8 @@ namespace ProjektZespolowy
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
 
+            app.UseMvc();
             app.UseSwag();
         }
     }

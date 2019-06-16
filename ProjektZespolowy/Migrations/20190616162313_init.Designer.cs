@@ -9,7 +9,7 @@ using ProjektZespolowy;
 namespace ProjektZespolowy.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20190616150801_init")]
+    [Migration("20190616162313_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace ProjektZespolowy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Description");
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
@@ -41,9 +41,11 @@ namespace ProjektZespolowy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Surname");
+                    b.Property<string>("Surname")
+                        .IsRequired();
 
                     b.Property<int>("TeamId");
 

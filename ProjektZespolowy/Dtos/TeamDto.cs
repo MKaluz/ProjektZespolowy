@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjektZespolowy.Models;
 
-namespace ProjektZespolowy.Models
+namespace ProjektZespolowy.Dtos
 {
-    public class Team
+    public class TeamDto
     {
         public int TeamId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<User> TeamMembers { get; set; } = new List<User>();
-        
-
+        public ICollection<UserDto> TeamMembers { get; set; } = new List<UserDto>();
     }
 }
