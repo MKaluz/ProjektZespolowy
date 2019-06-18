@@ -38,6 +38,13 @@ namespace ProjektZespolowy
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITeamService, TeamService>();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
@@ -50,6 +57,11 @@ namespace ProjektZespolowy
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowAnyOrigin()
+            );
 
             app.UseMvc();
             app.UseSwag();
